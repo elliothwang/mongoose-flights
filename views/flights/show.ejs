@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<h1>Details:</h1>
+
+<!-- show flight details -->
+
+  <%= flight.airline %>
+  <%= flight.airport %>
+  <%= flight.flightNo %>
+  <%= flight.departs %>
+
+<!-- if destination details are falsey show form -->
+<!-- <% flight.destination.forEach( function (destination) { %>
+  
+<% }); %> -->
+
+<% if (flight.destination.destination) { %>
+  <%= flight.destination.destination %>
+
+<!-- if destination details are truthy show destination details -->
+<% } else { %>
+  <h2>Add a Destination</h2>
+
+<form id="new-destination-form" action="/flights/<%= flight._id %>/destinations" method="POST">
+  <label>Destination Airport</label>
+    <select name="destination-airport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+  <label>Destination Date</label>
+    <input type="date" name="Date">
+  <input type="submit" value="Add Destination Details">
+</form>
+<% } %>
+
+<%- include('../partials/footer') %>
